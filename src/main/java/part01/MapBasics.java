@@ -1,6 +1,12 @@
 package part01;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This class demonstrates the basic operations of a Map. Implement each method
@@ -20,15 +26,17 @@ public class MapBasics {
      * Create and return a new Map that maps String keys to String values.
      */
     public Map<String, String> createMap() {
+        Map<String, String> kartta = new HashMap<>();
         // Hint: you can not instantiate a Map directly, but you can instantiate a class
         // that *implements* the Map interface.
-        return null;
+        return kartta;
     }
 
     /**
      * Add the given key/value pair to the given map.
      */
     public void addEntry(Map<String, String> map, String key, String value) {
+        map.put(key, value);
         // Hint: use the put method
     }
 
@@ -45,9 +53,15 @@ public class MapBasics {
      * Source: https://en.wikipedia.org/wiki/Nordic_countries, 9.8.2023
      */
     public Map<String, Integer> getPopulations() {
+        Map<String, Integer> maat = new HashMap<>();
+        maat.put("Denmark", 5894687);
+        maat.put("Finland", 5587442);
+        maat.put("Iceland", 354234);
+        maat.put("Norway", 5509591);
+        maat.put("Sweden", 10261767);
         // Hint: Make sure to write the names of the countries exactly as they are
         // written above, otherwise the tests will fail.
-        return null;
+        return maat;
     }
 
     /**
@@ -55,24 +69,34 @@ public class MapBasics {
      * is not in the map, return null.
      */
     public String getValue(Map<String, String> map, String key) {
+        String avain = map.get(key);
+
         // Hint: use the get method
-        return null;
+        return avain;
     }
 
     /**
      * Return true if the given map contains the given key, false otherwise.
      */
     public boolean hasKey(Map<String, String> map, String key) {
+        if (map.containsKey(key)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
         // Hint: see the resources above for a method that does this and the rest of
         // the methods below
-        return false;
+        
     }
 
     /**
      * Return true if the given map contains the given value, false otherwise.
      */
     public boolean hasValue(Map<String, String> map, String value) {
-        return false;
+        boolean arvo = map.containsValue(value);
+        return arvo;
     }
 
     /**
@@ -80,6 +104,12 @@ public class MapBasics {
      * the map.
      */
     public void addIfNotPresent(Map<String, String> map, String key, String value) {
+        String etsi = map.get(key);
+        if(etsi == null){
+            etsi = map.put(key, value);
+
+        }
+           
     }
 
     /**
@@ -89,6 +119,8 @@ public class MapBasics {
      * @param key the key of the entry to remove
      */
     public void removeEntry(Map<String, String> map, String key) {
+        map.remove(key);
+
     }
 
     /**
@@ -98,30 +130,67 @@ public class MapBasics {
      * @return the number of entries in the map
      */
     public int countEntries(Map<String, String> map) {
-        return 0;
+        int koko = map.size();
+
+        return koko;
     }
 
     /**
      * Return true if the given map is empty, false otherwise.
      */
     public boolean isEmpty(Map<String, String> map) {
-        return false;
+        
+        boolean tyhja = map.isEmpty();
+
+        return tyhja;
     }
 
     /**
      * Return the largest Integer value in the map. If the map is empty, return
      * null.
-     */
+        */
     public Integer largestValue(Map<String, Integer> map) {
-        return null;
+        if (map.isEmpty() == true){
+            return null;
+        }
+        else{Set<String> avaimet = map.keySet();
+        int suurin = 0;
+        
+        for (String lukko : avaimet){
+            int luku = map.get(lukko);
+            if (luku > suurin){
+                suurin = luku;
+            }
+            
+        }
+        
+        return suurin;
+
+        }
+        
+
     }
+       
 
     /**
      * Return the sum of all the Integer values in the map. If the map is empty,
      * return 0.
      */
     public int sumOfValues(Map<String, Integer> map) {
-        return 0;
+        int summa = 0;
+        if (map.isEmpty() == true){
+            return 0;
+        }
+        else{ 
+            for (int value : map.values()){
+                summa += value;
+            }
+
+        return summa;
+
+        }
+        
+        
     }
 
     /**
@@ -132,7 +201,11 @@ public class MapBasics {
      * maps should be modified.
      */
     public Map<String, String> combineMaps(Map<String, String> map1, Map<String, String> map2) {
-        return null;
+        Map<String, String> kartta = new HashMap<>(map2);
+        kartta.putAll(map1);
+        
+
+        return kartta;
     }
 
     /**
@@ -140,5 +213,9 @@ public class MapBasics {
      * should modify the given map, not create a new one.
      */
     public void incrementValues(Map<String, Integer> map, int amount) {
+         for (String key : map.keySet()) {
+        map.put(key, map.get(key) + amount);
+    }
+
     }
 }
