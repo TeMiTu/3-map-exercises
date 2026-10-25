@@ -59,10 +59,17 @@ public class PostalCodesMain {
             }
 
             Collections.sort(vastaukset);
-            
-            for(String code : vastaukset){
-                System.out.println(code);
+
+            if(vastaukset.isEmpty()){
+                System.out.println("Postinumeroita tai aluetta ei löytynyt");
             }
+            else{
+            
+                System.out.println(String.join(", ", vastaukset));
+            
+            }
+            
+            
         }
 
 
