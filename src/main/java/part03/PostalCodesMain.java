@@ -1,5 +1,8 @@
 package part03;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -41,6 +44,27 @@ public class PostalCodesMain {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input postal code or district (e.g., 00100 or Helsinki): ");
         String answer = scanner.nextLine(); // answer may be a postal code or a postal district name
+
+        if (postalCodes.containsKey(answer)){
+            System.out.println(postalCodes.get(answer));
+        }
+        else{
+            List<String> vastaukset = new ArrayList<>();
+            for(String postinumero : postalCodes.keySet()){
+                String alue = postalCodes.get(postinumero);
+
+                if(alue.equalsIgnoreCase(answer)){
+                    vastaukset.add(postinumero);
+                }
+            }
+
+            Collections.sort(vastaukset);
+            
+            for(String code : vastaukset){
+                System.out.println(code);
+            }
+        }
+
 
         // TODO: Implement your logic here
 
